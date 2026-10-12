@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Monday Coffee Expansion: SQL Market Analysis</title>
+<style>
+:root{--bg:#faf8f5;--surface:#fff;--text:#1f2937;--muted:#5b6472;--accent:#8a4b1f;--soft:#f3e6d9;--border:#e4ddd4;--code:#1f2430;--codetext:#e8e6e3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17130f;--surface:#211b15;--text:#efe9e2;--muted:#b3aa9f;--accent:#e0a36b;--soft:#33261a;--border:#3a3027;--code:#0f0d0b;--codetext:#e8e6e3}}
+:root[data-theme="dark"]{--bg:#17130f;--surface:#211b15;--text:#efe9e2;--muted:#b3aa9f;--accent:#e0a36b;--soft:#33261a;--border:#3a3027;--code:#0f0d0b;--codetext:#e8e6e3}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:880px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.7rem;line-height:1.2;margin:.4rem 0}
+h2{font-size:1.1rem;margin:1.4rem 0 .5rem}
+.lead{color:var(--muted);margin:0 0 .8rem}
+.badge{display:inline-block;background:var(--soft);color:var(--accent);border-radius:99px;padding:3px 12px;font-size:.8rem;font-weight:600}
+.tabs{display:flex;gap:6px;margin:18px 0 14px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.tab{background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 14px}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.panel{display:none}.panel.on{display:block}
+.box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{background:var(--soft);color:var(--accent);border:0;border-radius:99px;padding:4px 12px;font-size:.85rem}
+.chip[aria-pressed="true"]{background:var(--accent);color:#fff}
+.split{display:grid;grid-template-columns:240px 1fr;gap:14px}
+@media (max-width:640px){.split{grid-template-columns:1fr}}
+.q{display:block;width:100%;text-align:left;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:.92rem}
+.q[aria-selected="true"]{border-color:var(--accent);background:var(--soft)}
+pre{background:var(--code);color:var(--codetext);border-radius:8px;padding:12px;overflow-x:auto;font-size:.82rem;line-height:1.5;margin:8px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;transition:opacity .2s}
+.card.dim{opacity:.35}
+.card h3{margin:0 0 2px}.card .sub{color:var(--accent);font-weight:600;font-size:.9rem;margin:0 0 6px}
+.card ul{margin:0;padding-left:18px}
+a{color:var(--accent)}
+.small{font-size:.85rem;color:var(--muted)}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;padding:9px 16px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">Personal case study</span>
+  <h1>Monday Coffee Expansion: SQL Market Analysis</h1>
+  <p class="lead">Which three cities in India should a coffee brand pick for its first physical stores? Answered end to end in SQL.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">Overview</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">SQL walkthrough</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p3">Recommendations</button>
+  </div>
+
+  <section id="p1" class="panel on">
+    <div class="box"><strong>Objective.</strong> Use historical sales data to move the brand from online to physical retail. Evaluate consumer demand, market penetration, and regional sales trends, then identify the three best cities for a launch.</div>
+    <div class="box"><strong>Approach.</strong> Joined sales, customers, product, and city tables; estimated the coffee-consuming population per city (25% of population, per the brief); ranked products by city; tracked month-over-month growth; and compared average sale per customer against rent per customer.</div>
+    <div class="box"><strong>Result.</strong> A ranked recommendation: <strong>Pune, Delhi, and Jaipur</strong>, each backed by revenue, customer, market-size, and rent metrics.</div>
+    <h2>Skills demonstrated</h2>
+    <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">Multi-table JOINs</span><span class="chip">CTEs</span><span class="chip">Window functions: DENSE_RANK, LAG</span><span class="chip">Date functions</span><span class="chip">Aggregation</span><span class="chip">Business recommendation</span></div>
+    <p class="small">About this project: it is a personal portfolio project, not client work. The business brief and dataset come from a public learning project; the SQL solutions and analysis are mine.</p>
+    <a class="btn" href="https://github.com/sunday-praise/Coffee-Project" target="_blank" rel="noopener">View code on GitHub</a>
+  </section>
+
+  <section id="p2" class="panel">
+    <p class="lead">Pick a business question to see the technique and the SQL I wrote.</p>
+    <div class="split">
+      <div id="qlist"></div>
+      <div class="box"><strong id="qt"></strong><div class="small" id="qm"></div><pre><code id="qc"></code></pre></div>
+    </div>
+  </section>
+
+  <section id="p3" class="panel">
+    <p class="lead">Filter by what matters most to the business.</p>
+    <div class="chips" id="filters">
+      <button class="chip" aria-pressed="true" data-f="all">All</button>
+      <button class="chip" aria-pressed="false" data-f="revenue">Revenue</button>
+      <button class="chip" aria-pressed="false" data-f="market">Market size</button>
+      <button class="chip" aria-pressed="false" data-f="rent">Low rent</button>
+    </div>
+    <div class="cards">
+      <div class="card" data-tags="revenue rent"><h3>1. Pune</h3><p class="sub">Strongest revenue case</p><ul><li>Highest total revenue</li><li>Very low average rent per customer</li><li>High average sale per customer</li></ul></div>
+      <div class="card" data-tags="market"><h3>2. Delhi</h3><p class="sub">Largest estimated market</p><ul><li>About 7.7M estimated coffee consumers</li><li>68 customers in the data</li><li>Average rent per customer: 330 (under 500)</li></ul></div>
+      <div class="card" data-tags="rent"><h3>3. Jaipur</h3><p class="sub">Low rent, solid customer base</p><ul><li>69 customers in the data</li><li>Average rent per customer: 156</li><li>Average sale per customer: about 11.6k</li></ul></div>
+    </div>
+    <p class="small">Figures as reported in the project's README recommendations.</p>
+  </section>
+</div>
+
+<script>
+var Q=[
+{t:"Revenue by city, Q4 2023",m:"JOINs, EXTRACT() date filter, GROUP BY",c:"SELECT ci.city_name, SUM(s.total) AS total_revenue\nFROM sales s\nJOIN customers c ON s.customer_id = c.customer_id\nJOIN city ci ON ci.city_id = c.city_id\nWHERE EXTRACT(YEAR FROM s.sale_date) = 2023\n  AND EXTRACT(QUARTER FROM s.sale_date) = 4\nGROUP BY 1\nORDER BY 2 DESC;"},
+{t:"Units sold per product",m:"JOIN, COUNT, ORDER BY",c:"SELECT p.product_name, COUNT(s.sale_id) AS total_sales_count\nFROM products p\nJOIN sales s ON s.product_id = p.product_id\nGROUP BY 1\nORDER BY total_sales_count DESC;"},
+{t:"Average sale per customer, by city",m:"COUNT DISTINCT, ::numeric casting, ROUND",c:"SELECT ci.city_name,\n  SUM(s.total) AS total_revenue,\n  COUNT(DISTINCT c.customer_id) AS total_customers,\n  ROUND(SUM(s.total)::numeric\n    / COUNT(DISTINCT c.customer_id)::numeric, 2) AS average_sales\nFROM customers c\nJOIN city ci ON ci.city_id = c.city_id\nJOIN sales s ON s.customer_id = c.customer_id\nGROUP BY 1\nORDER BY average_sales DESC;"},
+{t:"Coffee consumers vs. customers",m:"Two CTEs joined together",c:"WITH city_table AS (\n  SELECT city_name,\n    ROUND((population * 0.25) / 1000000, 2) AS coffee_consumers\n  FROM city\n),\ncustomers_table AS (\n  SELECT ci.city_name,\n    COUNT(DISTINCT c.customer_name) AS unique_customers\n  FROM sales s\n  JOIN customers c ON c.customer_id = s.customer_id\n  JOIN city ci ON ci.city_id = c.city_id\n  GROUP BY 1\n)\nSELECT ct.city_name, city_table.coffee_consumers, ct.unique_customers\nFROM city_table\nJOIN customers_table ct ON city_table.city_name = ct.city_name;"},
+{t:"Top 3 products in each city",m:"Window function: DENSE_RANK() OVER (PARTITION BY ...)",c:"SELECT * FROM (\n  SELECT p.product_name, ci.city_name,\n    COUNT(s.sale_id) AS total_orders,\n    DENSE_RANK() OVER (\n      PARTITION BY ci.city_name\n      ORDER BY COUNT(s.sale_id) DESC) AS rank\n  FROM sales s\n  JOIN products p ON s.product_id = p.product_id\n  JOIN customers c ON c.customer_id = s.customer_id\n  JOIN city ci ON ci.city_id = c.city_id\n  GROUP BY ci.city_name, p.product_name\n) t1\nWHERE rank <= 3;"},
+{t:"Unique customers by city",m:"LEFT JOIN, COUNT DISTINCT, filter on product range",c:"SELECT ci.city_name,\n  COUNT(DISTINCT c.customer_id) AS unique_customers\nFROM city ci\nLEFT JOIN customers c ON c.city_id = ci.city_id\nJOIN sales s ON s.customer_id = c.customer_id\nWHERE s.product_id BETWEEN 1 AND 14\nGROUP BY 1;"},
+{t:"Average sale vs. rent per customer",m:"CTEs, derived ratio",c:"-- city_table: revenue, customers, avg sale per customer\n-- city_rent: estimated rent per city\nSELECT cr.city_name, cr.estimated_rent,\n  ct.total_customer, ct.avg_sale_pr_customer,\n  ROUND(cr.estimated_rent::numeric\n    / ct.total_customer::numeric, 2) AS average_rent_per_customer\nFROM city_rent cr\nJOIN city_table ct ON cr.city_name = ct.city_name;"},
+{t:"Monthly sales growth by city",m:"Window function: LAG() for month-over-month change",c:"-- monthly_sales: total sales per city, year, month\nSELECT city_name, month, year,\n  cr_month_sale, last_month_sale,\n  ROUND((cr_month_sale - last_month_sale)::numeric\n    / last_month_sale::numeric * 100, 2) AS growth_ratio\nFROM (\n  SELECT city_name, month, year,\n    total_sales AS cr_month_sale,\n    LAG(total_sales, 1) OVER (\n      PARTITION BY city_name ORDER BY year, month\n    ) AS last_month_sale\n  FROM monthly_sales\n) g\nWHERE last_month_sale IS NOT NULL;"},
+{t:"Market potential: top cities",m:"CTEs combining revenue, customers, market size, and rent",c:"-- city_table: revenue, customers, avg sale per customer\n-- city_rent: rent + estimated consumers (population * 0.25)\nSELECT cr.city_name, cr.estimated_rent AS total_rent,\n  ct.total_cx, estimated_coffee_consumer_in_millions,\n  ct.avg_sale_pr_cx,\n  ROUND(cr.estimated_rent::numeric\n    / ct.total_cx::numeric, 2) AS avg_rent_per_cx\nFROM city_rent cr\nJOIN city_table ct ON cr.city_name = ct.city_name\nORDER BY 2 DESC;"}
+];
+var tabs=document.querySelectorAll(".tab"),panels=document.querySelectorAll(".panel");
+tabs.forEach(function(b){b.addEventListener("click",function(){
+  tabs.forEach(function(x){x.setAttribute("aria-selected",x===b)});
+  panels.forEach(function(p){p.classList.toggle("on",p.id===b.dataset.p)});
+});});
+var list=document.getElementById("qlist");
+function show(i){
+  var items=list.children;
+  for(var k=0;k<items.length;k++){items[k].setAttribute("aria-selected",k===i)}
+  document.getElementById("qt").textContent=Q[i].t;
+  document.getElementById("qm").textContent=Q[i].m;
+  document.getElementById("qc").textContent=Q[i].c;
+}
+Q.forEach(function(q,i){
+  var b=document.createElement("button");b.className="q";b.textContent=(i+1)+". "+q.t;
+  b.addEventListener("click",function(){show(i)});list.appendChild(b);
+});
+show(0);
+var fb=document.querySelectorAll("#filters .chip"),cards=document.querySelectorAll(".card");
+fb.forEach(function(b){b.addEventListener("click",function(){
+  fb.forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+  cards.forEach(function(c){
+    var on=b.dataset.f==="all"||c.dataset.tags.split(" ").indexOf(b.dataset.f)>-1;
+    c.classList.toggle("dim",!on);
+  });
+});});
+</script>
+</body>
+</html>
